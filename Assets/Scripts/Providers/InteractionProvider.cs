@@ -27,7 +27,7 @@ public class InteractionProvider : MonoBehaviour, IProvider
         RaycastHit hit = RayProvider.hitableObject;
         bool isHitInteractive = (hit.collider != null) && hit.collider.gameObject.TryGetComponent(out interactable);
         if (!isHitInteractive) { return; }
-            
+
         MainLinks.Instance.TextWriter.Write("нажмите [E], чтобы взаимодействовать");
         if (Input.GetKeyDown(KeyCode.E))
         {
