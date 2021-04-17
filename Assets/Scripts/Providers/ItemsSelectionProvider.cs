@@ -26,7 +26,7 @@ public class ItemsSelectionProvider : MonoBehaviour, IProvider
         }
 
         RaycastHit hit = RayProvider.hitableObject;
-        bool canHitBeSelected = hit.collider.gameObject.TryGetComponent(out selectable);
+        bool canHitBeSelected = (hit.collider != null) && hit.collider.gameObject.TryGetComponent(out selectable);
         if (canHitBeSelected)
         {
             selectable.Select();

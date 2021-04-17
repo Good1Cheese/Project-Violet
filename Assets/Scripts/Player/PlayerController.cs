@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController controller;
-    public Transform groundCheck;
-    public LayerMask groundMask;
+    CharacterController controller;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask groundMask;
 
-    public float speed;
-    public float gravity;
-    public float jumpHeight;
-    public bool canMove;
+    [SerializeField] float speed;
+    [SerializeField] float gravity;
+    [SerializeField] float jumpHeight;
 
     Vector3 velocity;
-    public bool isGrounded;
+    bool isGrounded;
 
-    private float health;
-    [HideInInspector] public bool isAlive;
-
-    private void Update()
+    void Start()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, -0.4f, groundMask);
+        controller = GetComponent<CharacterController>();    
+    }
+
+    void Update()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, -0.2f, groundMask);
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);

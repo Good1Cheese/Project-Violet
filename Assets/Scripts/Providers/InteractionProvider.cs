@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemsInteractionProvider : MonoBehaviour, IProvider
+public class InteractionProvider : MonoBehaviour, IProvider
 {
     RayProvider rayProvider;
     IInteractable interactable;
@@ -8,6 +8,7 @@ public class ItemsInteractionProvider : MonoBehaviour, IProvider
     void Start()
     {
         rayProvider = GetComponent<RayProvider>();
+        rayProvider = MainLinks.Instance.RayProvider;
     }
 
     void Update()
@@ -22,8 +23,9 @@ public class ItemsInteractionProvider : MonoBehaviour, IProvider
             MainLinks.Instance.TextWriter.HideField();
         }
 
+        Debug.DrawRay(transform.position, transform.forward, Color.red);
         RaycastHit hit = RayProvider.hitableObject;
-        bool isHitInteractive = hit.collider.gameObject.TryGetComponent(out interactable);
+        bool isHitInteractive = (hit.collider != null) && hit.collider.gameObject.TryGetComponent(out interactable);
         if (!isHitInteractive) { return; }
 
         MainLinks.Instance.TextWriter.Write("нажмите [E], чтобы взаимодействовать");

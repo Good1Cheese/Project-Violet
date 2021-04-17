@@ -16,7 +16,10 @@ public class UITextWriter : MonoBehaviour
     public void Write(string text)
     {
         OpenField();
-        inputField.text = string.Format(text);
+        if (inputField.text != text)
+        {
+            inputField.text = string.Format(text);
+        }
     }
 
     public void HideField()
