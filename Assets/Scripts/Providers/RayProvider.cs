@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RayProvider : MonoBehaviour
@@ -9,10 +10,12 @@ public class RayProvider : MonoBehaviour
         Provide(out hitableObject);
     }
 
-    public void Provide(out RaycastHit hit)
+    void Provide(out RaycastHit hit)
     {
         Ray rayToForward = new Ray(transform.position, transform.forward);
-        bool raycast = Physics.Raycast(rayToForward, out hitableObject);
+        Physics.Raycast(rayToForward, out hitableObject);
         hit = hitableObject;
     }
+
+
 }

@@ -8,9 +8,11 @@ public class MainLinks : MonoBehaviour
     public static MainLinks Instance;
 
     public UITextWriter TextWriter { get; set; }
+    public RayProvider RayProvider { get; set; }
+    public SceneChanger SceneChanger { get; set; }
 
     void Awake()
-    {
+    {   
         if (Instance == null)
         {
             Instance = this;

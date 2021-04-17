@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonitorsSelectable : MonoBehaviour, ISelectable
+public class InteractiveItemsSelectable : MonoBehaviour, ISelectable
 {
-    const int screenPartIndex = 3;
+    [SerializeField] int highlightedPartIndex;
     [SerializeField] Color highLightColor;
     [SerializeField] Color defaultColor;
     Renderer renderer;
@@ -19,12 +19,12 @@ public class MonitorsSelectable : MonoBehaviour, ISelectable
 
     public void Deselect()
     {
-        materials[screenPartIndex].color = defaultColor;
+        materials[highlightedPartIndex].color = defaultColor;
     }
 
     public void Select()
     {
-        materials[screenPartIndex].color = highLightColor;
+        materials[highlightedPartIndex].color = highLightColor;
     }
 
 }
