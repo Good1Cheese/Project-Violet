@@ -6,6 +6,7 @@ public class GrabbleItemInteractable : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        print("Пистолет");
+        MainLinks.Instance.PlayerWeaponSlot.Weapon = gameObject;
+        MainLinks.Instance.OnPlayerPicksUpWeapon();
     }
 }

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InteractionRayProviderRayProvider))]
 public class ItemsSelectionProvider : MonoBehaviour, IProvider
 {
-    RayProvider rayProvider;
+    InteractionRayProviderRayProvider rayProvider;
     ISelectable selectable;
 
 
     void Start()
     {
-        rayProvider = GetComponent<RayProvider>();
+        rayProvider = GetComponent<InteractionRayProviderRayProvider>();
     }
 
     void Update()
@@ -25,7 +26,7 @@ public class ItemsSelectionProvider : MonoBehaviour, IProvider
             selectable.Deselect();
         }
 
-        RaycastHit hit = RayProvider.hitableObject;
+        RaycastHit hit = rayProvider.hitableObject;
         bool canHitBeSelected = (hit.collider != null) && hit.collider.gameObject.TryGetComponent(out selectable);
         if (canHitBeSelected)
         {

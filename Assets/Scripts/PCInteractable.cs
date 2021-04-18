@@ -12,6 +12,7 @@ public class PCInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         StartCoroutine(sceneChanger.ChangeScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 }

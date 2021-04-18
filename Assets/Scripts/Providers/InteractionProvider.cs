@@ -1,14 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(InteractionRayProviderRayProvider))]
 public class InteractionProvider : MonoBehaviour, IProvider
 {
-    RayProvider rayProvider;
+    InteractionRayProviderRayProvider rayProvider;
     IInteractable interactable;
 
     void Start()
     {
-        rayProvider = GetComponent<RayProvider>();
-        rayProvider = MainLinks.Instance.RayProvider;
+        rayProvider = GetComponent<InteractionRayProviderRayProvider>();
+        rayProvider = MainLinks.Instance.InteractionRayProviderRayProvider;
     }
 
     void Update()
@@ -23,8 +24,7 @@ public class InteractionProvider : MonoBehaviour, IProvider
             MainLinks.Instance.TextWriter.HideField();
         }
 
-        Debug.DrawRay(transform.position, transform.forward, Color.red);
-        RaycastHit hit = RayProvider.hitableObject;
+        RaycastHit hit = MainLinks.Instance.InteractionRayProviderRayProvider.hitableObject;
         bool isHitInteractive = (hit.collider != null) && hit.collider.gameObject.TryGetComponent(out interactable);
         if (!isHitInteractive) { return; }
             

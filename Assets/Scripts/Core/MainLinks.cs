@@ -1,23 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainLinks : MonoBehaviour
 {
     public static MainLinks Instance;
 
+    int enemyCount;
+    public int EnemyCount
+    {
+        get { return enemyCount; }
+        set
+        {
+            enemyCount = value;
+            if(enemyCount == 0)
+            {
+                OnEnemiesDied.Invoke();
+            }
+        }
+
+    }
+
+    public GunAudioController GunAudio { get; set; }
+    public WeaponSlot PlayerWeaponSlot { get; set; }
     public UITextWriter TextWriter { get; set; }
-    public RayProvider RayProvider { get; set; }
+    public InteractionRayProviderRayProvider InteractionRayProviderRayProvider { get; set; }
+    public WeaponRayProviderRayProvider WeaponRayProviderRayProvider { get; set; }
     public SceneChanger SceneChanger { get; set; }
+    public Action OnEnemiesDied { get; set; }
+    public Action OnPlayerShoots { get; set; }
+    public Action OnPlayerPicksUpWeapon { get; set; }
+    public Action OnEnemyDie { get; set; }
 
     void Awake()
-    {   
-        if (Instance == null)
+    {
+        if (Instance != null)
         {
-            Instance = this;
-            return;
+            Debug.LogError("There are more then 1 MainLinks's Instance");
         }
-        Debug.LogError("There are more then 1 MainLinks's Instance");
+        Instance = this;
     }
 }
