@@ -1,5 +1,7 @@
-﻿public interface ISelectable
+﻿using UnityEngine;
+
+public abstract class ISelectable : MonoBehaviour
 {
-    void Select();
-    void Deselect();
+    public abstract void Select();
+    public abstract void Deselect();
 }

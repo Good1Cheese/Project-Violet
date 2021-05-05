@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081133b0bd6b2e3419ce0125416e5aa7, type: 3}
+  m_Name: OldGunData
+  m_EditorClassIdentifier: 
+  bulletSpeed: 50
+  bulletPrefab: {fileID: 2457275564210868901, guid: 1e2691ea1110be14f8dd091057bf9c8a, type: 3}
+  flyLimit: 50
+  weaponPickingUpSound: {fileID: 8300000, guid: 27f838c9928fe5f4695cdd1a9b0143d0, type: 3}
+  weaponShootingSound: {fileID: 8300000, guid: 72e1438a66b36a24c81eff143f4ede2f, type: 3}

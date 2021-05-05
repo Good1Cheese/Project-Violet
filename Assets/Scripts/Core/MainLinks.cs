@@ -12,24 +12,26 @@ public class MainLinks : MonoBehaviour
         set
         {
             enemyCount = value;
-            if(enemyCount == 0)
+            if (enemyCount == 0)
             {
-                OnEnemiesDied.Invoke();
+                OnEnemiesDied?.Invoke();
             }
         }
 
     }
 
-    public GunAudioController GunAudio { get; set; }
+    public GameObject Camera { get; set; }
     public WeaponSlot PlayerWeaponSlot { get; set; }
     public UITextWriter TextWriter { get; set; }
-    public InteractionRayProviderRayProvider InteractionRayProviderRayProvider { get; set; }
-    public WeaponRayProviderRayProvider WeaponRayProviderRayProvider { get; set; }
+    public RayProvider InteractionRayProvider { get; set; }
     public SceneChanger SceneChanger { get; set; }
     public Action OnEnemiesDied { get; set; }
     public Action OnPlayerShoots { get; set; }
     public Action OnPlayerPicksUpWeapon { get; set; }
-    public Action OnEnemyDie { get; set; }
+    public GameObject ProgramUI { get; set; }
+    public GameObject Player { get; set; }
+    public GunData_SO PlayerGunData { get; set; }
+    public HealthController PlayerHealthController { get; internal set; }
 
     void Awake()
     {
@@ -38,5 +40,15 @@ public class MainLinks : MonoBehaviour
             Debug.LogError("There are more then 1 MainLinks's Instance");
         }
         Instance = this;
+    }
+
+    void Start()
+    {
+        PlayerHealthController = Player.GetComponent<HealthController>();
+    }
+
+    void OnDestroy()
+    {
+        Instance = null;
     }
 }

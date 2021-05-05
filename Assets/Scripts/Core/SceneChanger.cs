@@ -7,7 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
     Animator animator;
 
-    void Start()
+    void Awake()
     {
         MainLinks.Instance.SceneChanger = this;
         animator = GetComponent<Animator>();

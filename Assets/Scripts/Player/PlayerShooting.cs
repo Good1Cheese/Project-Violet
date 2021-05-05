@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    EnemyHealthContorller healthContorller;
+    GunData_SO gunData;
+
+    void Start()
+    {
+        gunData = MainLinks.Instance.PlayerGunData;
+    }
+
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
@@ -13,11 +19,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        MainLinks.Instance.WeaponRayProviderRayProvider.Provide(out RaycastHit hit);
-        bool isHitInteractive = (hit.collider != null) && hit.collider.gameObject.TryGetComponent(out healthContorller);
-        if (!isHitInteractive) { return; }
-        MainLinks.Instance.OnPlayerShoots.Invoke();
-
-        healthContorller.GetDamage(10);
+        MainLinks.Instance.OnPlayerShoots?.Invoke();
+        Instantiate(gunData.bulletPrefab, MainLinks.Instance.Camera.transform.position, gunData.bulletPrefab.transform.rotation);
     }
 }
